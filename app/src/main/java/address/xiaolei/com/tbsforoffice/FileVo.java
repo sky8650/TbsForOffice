@@ -8,15 +8,23 @@ import java.io.File;
  * desc   :
  */
 public class FileVo {
-    private  String  progress;
+    private  int  progress;
     private File     file;
+    private  boolean isSucess;
 
+    public boolean isSucess() {
+        return isSucess;
+    }
 
-    public String getProgress() {
+    public void setSucess(boolean sucess) {
+        isSucess = sucess;
+    }
+
+    public int getProgress() {
         return progress;
     }
 
-    public void setProgress(String progress) {
+    public void setProgress(int progress) {
         this.progress = progress;
     }
 

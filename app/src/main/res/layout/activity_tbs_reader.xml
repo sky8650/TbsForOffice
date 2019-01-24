@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/li_root"
@@ -8,5 +8,16 @@
     android:background="@android:color/white"
     android:orientation="vertical"
     tools:context=".ui.TbsReaderActivity">
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:progress="2"
+        android:layout_gravity="center"
+        android:layout_margin="20dp"
+        android:max="100"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        ></ProgressBar>
 
-</android.support.v7.widget.LinearLayoutCompat>
+
+</FrameLayout>
