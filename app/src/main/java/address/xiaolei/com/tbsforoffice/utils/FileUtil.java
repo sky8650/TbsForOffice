@@ -2,6 +2,7 @@ package address.xiaolei.com.tbsforoffice.utils;
 
 import android.content.Context;
 import android.os.Environment;
+import android.text.TextUtils;
 import android.util.Log;
 
 import java.io.File;
@@ -147,6 +148,32 @@ public class FileUtil {
         }
         return fileSizeString;
     }
+
+    /***
+     * 获取文件类型
+     *
+     * @param paramString
+     * @return
+     */
+    public  static String getFileType(String paramString) {
+        String str = "";
+
+        if (TextUtils.isEmpty(paramString)) {
+            Log.d("print", "paramString---->null");
+            return str;
+        }
+        Log.d("print", "paramString:" + paramString);
+        int i = paramString.lastIndexOf('.');
+        if (i <= -1) {
+            Log.d("print", "i <= -1");
+            return str;
+        }
+
+        str = paramString.substring(i + 1);
+        Log.d("print", "paramString.substring(i + 1)------>" + str);
+        return str;
+    }
+
 
     private static boolean isSpace(String s) {
         if (s == null) return true;
