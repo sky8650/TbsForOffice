@@ -13,5 +13,7 @@
 ## 遇到的问题
    * 加载TbsReaderView的容器最好不要是LinearLayoutCompat，LinearLayout在滑动的时候会出现显示不全的情况。用FrameLayout较好
      （目前还不清楚原因，估计是X5的内核机制导致）
+   * X5浏览器记得需要在Application中进行初始化
+   * TbsReaderView 不能放在 layout 布局文件中，因为只有TbsReaderView(Context var1, TbsReaderView.ReaderCallback var2) {}这一个构造方法进行初始化
     
     
