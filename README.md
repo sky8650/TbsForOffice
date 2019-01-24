@@ -12,6 +12,6 @@
 
 ## 遇到的问题
    * 加载TbsReaderView的容器最好不要是LinearLayoutCompat，LinearLayout在滑动的时候会出现显示不全的情况。用FrameLayout较好
-     （目前还不知道原因，估计是X5的内核机制导致）
+     （目前还不清楚原因，估计是X5的内核机制导致）
     
     
