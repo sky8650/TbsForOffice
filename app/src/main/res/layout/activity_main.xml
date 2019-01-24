@@ -5,12 +5,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="20dp"
     tools:context=".MainActivity">
 
    <Button
-       android:id="@+id/btn_file"
+       android:id="@+id/btn_pdf"
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
        android:text="加载pdf"/>
+
+   <Button
+       android:id="@+id/btn_word"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_marginTop="20dp"
+       android:text="加载word"/>
+
+   <Button
+       android:id="@+id/btn_ppt"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_marginTop="20dp"
+       android:text="加载ppt"/>
 
 </android.support.v7.widget.LinearLayoutCompat>

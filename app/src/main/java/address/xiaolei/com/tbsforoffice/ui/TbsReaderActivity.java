@@ -82,10 +82,8 @@ public class TbsReaderActivity extends Activity implements
                                 fileVo.setProgress(progress);
                                 progressBar.setProgress(fileVo.getProgress());
                             }
-
                             @Override
                             public void onDownloadFailed(Exception e) {
-
                             }
                         });
 
