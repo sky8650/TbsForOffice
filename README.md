@@ -15,5 +15,6 @@
      （目前还不清楚原因，估计是X5的内核机制导致）
    * X5浏览器记得需要在Application中进行初始化
    * TbsReaderView 不能放在 layout 布局文件中，因为源码中只有TbsReaderView(Context var1, TbsReaderView.ReaderCallback var2) {}这一个构造方法进行初始化
+   * 只能加载本地的文件，因此先下载到sd卡中再进行加载
     
     
