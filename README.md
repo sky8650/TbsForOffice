@@ -14,6 +14,73 @@
 <image src="https://github.com/sky8650/TbsForOffice/blob/master/app/img/device-2019-01-25-141307.png" width="260px"/>   <image src="https://github.com/sky8650/TbsForOffice/blob/master/app/img/device-2019-01-25-141409.png" width="260px"/>    <image 
 src="https://github.com/sky8650/TbsForOffice/blob/master/app/img/GIF.gif" width="260px"/>
 
+## 文件下载(OKhttp)
+```
+ private  void   downLoadFile(){
+        Observable.create(new ObservableOnSubscribe<FileVo>() {
+          @Override
+            public void subscribe(final ObservableEmitter<FileVo> e) throws Exception {
+              final FileVo  fileVo=new FileVo();
+               String path= FileUtil.getCachePath(TbsReaderActivity.this);
+                downloadUtil.download(officeUrl, path,
+                        officeSaveName,
+                        new DownloadUtil.OnDownloadListener() {
+                            @Override
+                            public void onDownloadSuccess(File file) {
+                                fileVo.setFile(file);
+                                e.onNext(fileVo);
+                                e.onComplete();
+                            }
+                            @Override
+                            public void onDownloading(int progress) {
+                                Log.d("当前下载的进度",""+progress);
+                                showProgress(progress);
+                            }
+                            @Override
+                            public void onDownloadFailed(Exception e) {
+                            }
+                        });
+            }
+
+        }).compose(RxUtils.schedulersTransformer()).subscribe(new Consumer<FileVo>() {
+            @Override
+            public void accept(FileVo fileVo) {
+                 showOffice(fileVo);
+            }
+        });
+
+    }
+```
+
+### 文件加载
+```
+ private   void   showOffice(FileVo fileVo){
+         progressBar.setProgress(fileVo.getProgress());
+         file=fileVo.getFile();
+         String bsReaderTemp = tbsReaderTemp;
+         File bsReaderTempFile =new File(bsReaderTemp);
+         if (!bsReaderTempFile.exists()) {
+             boolean mkdir = bsReaderTempFile.mkdir();
+             if(!mkdir){
+                 Log.d("print","创建/TbsReaderTemp失败！！！！！");
+             }
+         }
+         //加载文件
+         Bundle localBundle = new Bundle();
+         localBundle.putString("filePath", file.toString());
+         localBundle.putString("tempPath",
+                 tbsReaderTemp);
+         if (tbsReaderView == null){
+             tbsReaderView = getTbsView();
+         }
+         boolean result = tbsReaderView.preOpen(FileUtil.getFileType(file.toString()), false);
+         if (result) {
+             tbsReaderView.openFile(localBundle);
+         }
+     }
+
+```
+
 
 
 ## 遇到的问题
