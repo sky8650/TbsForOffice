@@ -72,7 +72,6 @@ public class TbsReaderActivity extends Activity implements
             public void subscribe(final ObservableEmitter<FileVo> e) throws Exception {
               final FileVo  fileVo=new FileVo();
                String path= FileUtil.getCachePath(TbsReaderActivity.this);
-              // String  url="http://res.imtt.qq.com/TES/HowToLoadX5Core.doc";
                 downloadUtil.download(officeUrl, path,
                         officeSaveName,
                         new DownloadUtil.OnDownloadListener() {
@@ -85,7 +84,6 @@ public class TbsReaderActivity extends Activity implements
                             @Override
                             public void onDownloading(int progress) {
                                 Log.d("当前下载的进度",""+progress);
-                                fileVo.setProgress(progress);
                                 showProgress(progress);
                             }
                             @Override
@@ -109,7 +107,7 @@ public class TbsReaderActivity extends Activity implements
      */
     private   void   showOffice(FileVo fileVo){
          progressBar.setProgress(fileVo.getProgress());
-        file=fileVo.getFile();
+         file=fileVo.getFile();
          String bsReaderTemp = tbsReaderTemp;
          File bsReaderTempFile =new File(bsReaderTemp);
          if (!bsReaderTempFile.exists()) {
