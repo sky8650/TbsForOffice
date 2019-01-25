@@ -12,7 +12,7 @@
 
 ## 图例
 <image src="https://github.com/sky8650/TbsForOffice/blob/master/app/img/device-2019-01-25-141307.png" width="260px"/>   <image src="https://github.com/sky8650/TbsForOffice/blob/master/app/img/device-2019-01-25-141409.png" width="260px"/>    <image 
-src="https://github.com/sky8650/TbsForOffice/blob/master/app/img/GIF.gif"  height="470px" width="260px"/>
+src="https://github.com/sky8650/TbsForOffice/blob/master/app/img/GIF.gif"  height="460px" width="260px"/>
 
 ## 文件下载(OKhttp)
 ```
