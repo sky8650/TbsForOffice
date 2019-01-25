@@ -10,7 +10,7 @@
 * 调用手机的第三方浏览器打开
 * 利用X5浏览器在应用内打开
 
-## Example
+## 图例
 <image src="https://github.com/sky8650/TbsForOffice/blob/master/app/img/device-2019-01-25-141307.png" width="260px"/>   <image src="https://github.com/sky8650/TbsForOffice/blob/master/app/img/device-2019-01-25-141409.png" width="260px"/>    <image 
 src="https://github.com/sky8650/TbsForOffice/blob/master/app/img/GIF.gif" width="260px"/>
 
