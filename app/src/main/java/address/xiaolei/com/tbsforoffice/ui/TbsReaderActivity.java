@@ -9,6 +9,7 @@ import android.util.Log;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 
+import com.daimajia.numberprogressbar.NumberProgressBar;
 import com.tencent.smtt.sdk.TbsReaderView;
 
 import java.io.File;
@@ -22,7 +23,10 @@ import address.xiaolei.com.tbsforoffice.utils.RxUtils;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.Scheduler;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 
 public class TbsReaderActivity extends Activity implements
         TbsReaderView.ReaderCallback {
@@ -31,7 +35,9 @@ public class TbsReaderActivity extends Activity implements
     File file;
     TbsReaderView  tbsReaderView;
     FrameLayout li_root;
-    ProgressBar  progressBar;
+    NumberProgressBar progressBar;
+    private  String  officeUrl="";
+    private  String  officeSaveName="";
     private String tbsReaderTemp = Environment.getExternalStorageDirectory() +
             "/TbsReaderTemp";
 
@@ -46,7 +52,9 @@ public class TbsReaderActivity extends Activity implements
      * 初始化视图
      */
     private  void   initView(){
-        progressBar=findViewById(R.id.progressBar);
+        officeUrl=getIntent().getStringExtra("URL");
+        officeSaveName="aa."+FileUtil.getFileType(officeUrl);
+        progressBar=findViewById(R.id.number_progress_bar);
         tbsReaderView = new TbsReaderView(this, this);
         li_root=findViewById(R.id.li_root);
         li_root.addView(tbsReaderView);
@@ -65,28 +73,25 @@ public class TbsReaderActivity extends Activity implements
               final FileVo  fileVo=new FileVo();
                String path= FileUtil.getCachePath(TbsReaderActivity.this);
               // String  url="http://res.imtt.qq.com/TES/HowToLoadX5Core.doc";
-                String  url="https://github.com/sky8650/TbsForOffice/raw/master/app/img/TBS_SDK.pdf";
-                downloadUtil.download(url, path,
-                        "aa.pdf",
+                downloadUtil.download(officeUrl, path,
+                        officeSaveName,
                         new DownloadUtil.OnDownloadListener() {
                             @Override
                             public void onDownloadSuccess(File file) {
-                                Log.d("我执行啦","啦啦啦啦");
                                 fileVo.setFile(file);
                                 e.onNext(fileVo);
-
+                                e.onComplete();
                             }
                             @Override
                             public void onDownloading(int progress) {
                                 Log.d("当前下载的进度",""+progress);
                                 fileVo.setProgress(progress);
-                                progressBar.setProgress(fileVo.getProgress());
+                                showProgress(progress);
                             }
                             @Override
                             public void onDownloadFailed(Exception e) {
                             }
                         });
-
             }
 
         }).compose(RxUtils.schedulersTransformer()).subscribe(new Consumer<FileVo>() {
@@ -103,7 +108,8 @@ public class TbsReaderActivity extends Activity implements
      * 加载文件
      */
     private   void   showOffice(FileVo fileVo){
-         file=fileVo.getFile();
+         progressBar.setProgress(fileVo.getProgress());
+        file=fileVo.getFile();
          String bsReaderTemp = tbsReaderTemp;
          File bsReaderTempFile =new File(bsReaderTemp);
          if (!bsReaderTempFile.exists()) {
@@ -125,6 +131,24 @@ public class TbsReaderActivity extends Activity implements
              tbsReaderView.openFile(localBundle);
          }
      }
+
+
+    /**
+     * 显示进度
+     * @param progress
+     */
+   private   void   showProgress(final int  progress){
+        Observable.just(progress)
+               .compose(RxUtils.schedulersTransformer())
+               . subscribe(new Consumer<Integer>() {
+            @Override
+            public void accept(Integer integer) throws Exception {
+                progressBar.setProgress(progress);
+            }
+        });
+
+   }
+
 
 
     private   TbsReaderView  getTbsView(){

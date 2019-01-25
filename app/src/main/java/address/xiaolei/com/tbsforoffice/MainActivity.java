@@ -28,13 +28,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(intent);
                 break;
             case  R.id.btn_ppt:
-                String  ppt_url="";
+                String  ppt_url="https://github.com/sky8650/TbsForOffice/raw/master/app/img/pp_test.pptx";
                 intent.putExtra("URL",ppt_url);
                 startActivity(intent);
                 break;
 
             case  R.id.btn_word:
-                String word_url="";
+                String word_url="https://github.com/sky8650/TbsForOffice/raw/master/app/img/TBS_DOC.doc";
                 intent.putExtra("URL",word_url);
                 startActivity(intent);
                 break;
