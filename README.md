@@ -89,5 +89,7 @@ src="https://github.com/sky8650/TbsForOffice/blob/master/app/img/GIF.gif" width=
    * TbsReaderView 不能放在 layout 布局文件中，因为源码中只有TbsReaderView(Context var1, TbsReaderView.ReaderCallback var2) {}这一个构造方法进行初始化
    * 只能加载本地的文件，因此先下载到sd卡中再进行加载
    * 需要在onDestroy中停用TbsReaderView：tbsReaderView.onStop();
+   
+   ## PS:如果本文对你有帮助请点个star或者Fork，如有问题可在Issues中进行讨论
     
     
