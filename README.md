@@ -33,7 +33,6 @@ src="https://github.com/sky8650/TbsForOffice/blob/master/app/img/GIF.gif" width=
                             }
                             @Override
                             public void onDownloading(int progress) {
-                                Log.d("当前下载的进度",""+progress);
                                 showProgress(progress);
                             }
                             @Override
